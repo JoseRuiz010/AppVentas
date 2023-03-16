@@ -1,9 +1,8 @@
 package com.Sistema.Venta.Model.Entity;
 
+import com.Sistema.Venta.Model.Entity.Enum.EstadoCuenta;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -17,24 +16,40 @@ public class Cuenta {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
 
-    private Cliente cliente;
+    private EstadoCuenta estado;
 
-    private List<LineaDeCuenta>lineaDeCuentas= new ArrayList<>();
+    private List<LineaDeCuenta> lineasDeCuenta = new ArrayList<>();
 
+    private Double total=0.0;
 
     public Cuenta() {
         iniciar();
-        cargarDescripcion();
+        estado= EstadoCuenta.ACTIVA;
     }
 
-    public void cargarDescripcion(){
+    private void iniciar(){
         this.descripcion= LocalDate.now().getMonth().toString()+ "/"+ LocalDate.now().getYear();
+        setFechaInicio(LocalDate.now());
     }
-    public void iniciar(){
-        this.fechaInicio= LocalDate.now();
+
+    public void FinalizarCuenta(){
+        setEstado(EstadoCuenta.PAGADO);
+        setFechaFin(LocalDate.now());
     }
-    public void  finalizar(){
-        this.fechaFin= LocalDate.now();
+
+
+    public void AgregarLineaDeCuenta(LineaDeCuenta lineaDeCuenta){
+        this.lineasDeCuenta.add(lineaDeCuenta);
+    }
+    public void AgregarLineasDeCuenta(List<LineaDeCuenta> lineaDeCuentas){
+         lineaDeCuentas.forEach(lc->this.lineasDeCuenta.add(lc));
+    }
+
+    public void CalcularTotal(){
+        lineasDeCuenta.forEach(lc-> {
+            lc.CalcularSubTotal();
+            setTotal(getTotal()+lc.getSubtotal());
+        });
     }
 
     @Override
@@ -44,8 +59,9 @@ public class Cuenta {
                 ", descripcion='" + descripcion + '\'' +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
-                ", cliente=" + cliente +
-                ", Linea de Cuentas ="+lineaDeCuentas+
+                ", estado=" + estado +
+                ", lineasDeCuenta=" + lineasDeCuenta +
+                ", total=" + total +
                 '}';
     }
 }

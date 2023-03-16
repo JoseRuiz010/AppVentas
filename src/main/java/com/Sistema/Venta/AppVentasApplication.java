@@ -1,6 +1,7 @@
 package com.Sistema.Venta;
 
 import com.Sistema.Venta.Model.Entity.*;
+import com.Sistema.Venta.Model.Entity.Enum.TipoLineaProducto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -18,41 +19,25 @@ public class AppVentasApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		log.info("Hola mundooooo");
+		Producto p= new Producto("Pepsi", "3L", 450D, TipoLineaProducto.PEPSI);
+		Producto p1= new Producto("Coca", "3L", 650D, TipoLineaProducto.COCA_COLA);
 
-		Cliente c= new Cliente();
-		c.setNombre("Mariela");
-		c.setApellido("Mariela");
-		c.setEmail("Mariela@gmil.com");
-		c.setTelefono("3814463721");
-		c.setDireccion("Leales, Barrio Pedro Parra MZ B Casa 17");
-		log.info(c.toString());
-
+		Vendedor v= new Vendedor("Carlos","Ruiz","carlos@gmail.com","3816397808","Leales Tucuman","44588");
+		Usuario u = new Usuario("roque", "1234");
+		Cliente c= new Cliente("Roque","Argañaraz","Roque@gmail.com","3814463721", "Leales, Barrio Pedro Parra MZ B Casa 17",u);
 		Cuenta cu= new Cuenta();
-		cu.setCliente(c);
+		c.agregarCuenta(cu);
+		LineaDeCuenta l1= new LineaDeCuentaConProducto(1,p);
+		l1.setVendedor(v);
+		LineaDeCuenta l2= new LineaDeCuentaConProducto(1,p1);
+		l2.setVendedor(v);
+		LineaDeCuenta l3= new LineaDeCuentaConSaldo(500D, "Plata a Facundo");
+		l3.setVendedor(v);
+		cu.AgregarLineaDeCuenta(l1);
+		cu.AgregarLineaDeCuenta(l2);
+		cu.AgregarLineaDeCuenta(l3);
 
-		Saldo s= new Saldo();
-		s.setMonto(500.00);
-		s.setDescripcion("Plata a don Rudy");
-
-		Producto p = new Producto();
-		p.setPrecio(450D);
-		p.setCapacidad("2 1/4L");
-		p.setDescripcion("Pepsi 2 1/4");
-
-		LineaDeCuentaConProducto lcp= new LineaDeCuentaConProducto();
-
-			lcp.setProducto(p);
-			lcp.setCantidad(2);
-			lcp.calcularsubtotal();
-		LineaDeCuenta lc= new LineaDeCuenta();
-		lc.setLineaDeCuenta(lcp);
-		LineaDeCuenta lc1= new LineaDeCuenta();
-		lc1.setLineaDeCuenta(s);
-
-		cu.getLineaDeCuentas().add(lc);
-		cu.getLineaDeCuentas().add(lc1);
-
+		cu.CalcularTotal();
 		log.info(cu.toString());
 
 	}

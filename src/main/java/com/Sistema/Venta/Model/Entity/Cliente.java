@@ -4,26 +4,32 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class Cliente {
+public class Cliente  extends  Persona{
     private Long id;
-    private String nombre;
-    private String apellido;
-    private String email;
-    private String telefono;
-    private String direccion;
+    private Usuario usuario;
+    private List<Cuenta>cuentas;
+
+    public Cliente(String nombre, String apellido, String email, String telefono, String direccion, Usuario usuario) {
+        super(nombre, apellido, email, telefono, direccion);
+        this.usuario = usuario;
+        this.cuentas = new ArrayList<>();
+    }
+
+    public void agregarCuenta(Cuenta c){
+        cuentas.add(c);
+    }
 
     @Override
     public String toString() {
         return "Cliente{" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", email='" + email + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", direccion='" + direccion + '\'' +
+                ", cuentas=" + cuentas +
                 '}';
     }
 }

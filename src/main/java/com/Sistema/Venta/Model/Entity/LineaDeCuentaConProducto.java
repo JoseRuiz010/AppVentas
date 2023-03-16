@@ -1,26 +1,23 @@
 package com.Sistema.Venta.Model.Entity;
 
-import com.Sistema.Venta.Model.Entity.Contratos.AbstractLineaDeCuenta;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class LineaDeCuentaConProducto extends AbstractLineaDeCuenta {
-
+public class LineaDeCuentaConProducto extends LineaDeCuenta {
+    private Long id;
     private int cantidad;
     private Producto producto;
-    public LineaDeCuentaConProducto() {
 
-    }
-
-    private void CargarDescripcion(){
-        setDescripcion(producto.getDescripcion()+" "+producto.getCapacidad());
+    public LineaDeCuentaConProducto(int cantidad, Producto producto) {
+        this.cantidad = cantidad;
+        this.producto = producto;
     }
 
     @Override
-    public void calcularsubtotal() {
-        setMonto(producto.getPrecio()* this.cantidad);
+    public void CalcularSubTotal() {
+        setSubtotal(this.cantidad*this.producto.getPrecio());
     }
 
     @Override
