@@ -4,32 +4,61 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+ 
+
+
 @Getter
 @Setter
-@NoArgsConstructor
-public class Cliente  extends  Persona{
+ 
+@Entity
+public class Cliente  extends  Persona {
+	 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Usuario usuario;
-    private List<Cuenta>cuentas;
+	private String codigoCliente;
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	private Usuario usuario;
+	@OneToMany(mappedBy = "cliente")
+	private List<Cuenta>cuentas= new ArrayList<>();
+	
+	
+	public Cliente(String nombre, String apellido, String email, String telefono, String direccion,
+			String codigoCliente) {
+		super(nombre, apellido, email, telefono, direccion);
+		 
+		this.codigoCliente = codigoCliente;
+	}
+	
+	public Cliente(String nombre, String apellido, String email, String telefono, String direccion, 
+			String codigoCliente, Usuario usuario) {
+		super(nombre, apellido, email, telefono, direccion);
+		this.codigoCliente = codigoCliente;
+		this.usuario = usuario;
+		 
+	}
 
-    public Cliente(String nombre, String apellido, String email, String telefono, String direccion, Usuario usuario) {
-        super(nombre, apellido, email, telefono, direccion);
-        this.usuario = usuario;
-        this.cuentas = new ArrayList<>();
-    }
+	public Cliente() {
+		 
+	}
+    
 
-    public void agregarCuenta(Cuenta c){
+    /*public void agregarCuenta(Cuenta c){
         cuentas.add(c);
-    }
+    }*/
+ 
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", cuentas=" + cuentas +
-                '}';
-    }
+  
 }

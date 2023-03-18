@@ -1,15 +1,22 @@
 package com.Sistema.Venta;
 
-import com.Sistema.Venta.Model.Entity.*;
-import com.Sistema.Venta.Model.Entity.Enum.TipoLineaProducto;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.Sistema.Venta.Model.Entity.Cliente;
+import com.Sistema.Venta.Model.Entity.Cuenta;
+import com.Sistema.Venta.Model.Entity.Usuario;
+import com.Sistema.Venta.Services.ServiceClienteImpl;
+
 @SpringBootApplication
 public class AppVentasApplication implements CommandLineRunner {
+	@Autowired
+	ServiceClienteImpl serviceCliente;
 
 	Logger log= LoggerFactory.getLogger(AppVentasApplication.class);
 
@@ -19,13 +26,26 @@ public class AppVentasApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Producto p= new Producto("Pepsi", "3L", 450D, TipoLineaProducto.PEPSI);
+		
+		Usuario u = new Usuario("roque", "1234");
+		Cliente c= new Cliente("Roque","Argañaraz","Roque@gmail.com","3814463721", "Leales, Barrio Pedro Parra MZ B Casa 17","CodRoque");
+		c.setUsuario(u);
+		serviceCliente.addCliente(c);
+		
+		Cuenta cu= new Cuenta();
+		c.getCuentas().add(cu);
+	    var cc=	c.getCuentas();
+		
+		//serviceCliente.agregarCuenta(cu,1L);
+		
+		
+		log.info("Mostrar cliente 1 "+serviceCliente.getById(1L).getApellido());
+		
+	/*	Producto p= new Producto("Pepsi", "3L", 450D, TipoLineaProducto.PEPSI);
 		Producto p1= new Producto("Coca", "3L", 650D, TipoLineaProducto.COCA_COLA);
 
 		Vendedor v= new Vendedor("Carlos","Ruiz","carlos@gmail.com","3816397808","Leales Tucuman","44588");
-		Usuario u = new Usuario("roque", "1234");
-		Cliente c= new Cliente("Roque","Argañaraz","Roque@gmail.com","3814463721", "Leales, Barrio Pedro Parra MZ B Casa 17",u);
-		Cuenta cu= new Cuenta();
+		
 		c.agregarCuenta(cu);
 		LineaDeCuenta l1= new LineaDeCuentaConProducto(1,p);
 		l1.setVendedor(v);
@@ -38,7 +58,7 @@ public class AppVentasApplication implements CommandLineRunner {
 		cu.AgregarLineaDeCuenta(l3);
 
 		cu.CalcularTotal();
-		log.info(cu.toString());
+		log.info(cu.toString());*/
 
 	}
 }
