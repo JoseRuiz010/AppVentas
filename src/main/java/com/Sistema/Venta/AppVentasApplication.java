@@ -10,10 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.Sistema.Venta.Model.Entity.Cliente;
 import com.Sistema.Venta.Model.Entity.Cuenta;
+import com.Sistema.Venta.Model.Entity.LineaDeCuenta;
+import com.Sistema.Venta.Model.Entity.LineaDeCuentaConProducto;
 import com.Sistema.Venta.Model.Entity.Producto;
 import com.Sistema.Venta.Model.Entity.Usuario;
 import com.Sistema.Venta.Model.Entity.Enum.TipoLineaProducto;
 import com.Sistema.Venta.Services.ServiceClienteImpl;
+import com.Sistema.Venta.Services.ServiceLineaDeCuentaImpl;
 import com.Sistema.Venta.Services.ServiceProductoImpl;
 
 @SpringBootApplication
@@ -22,6 +25,8 @@ public class AppVentasApplication implements CommandLineRunner {
 	ServiceClienteImpl serviceCliente;
 	@Autowired
 	ServiceProductoImpl serviceProducto;
+	@Autowired
+	ServiceLineaDeCuentaImpl serviceLineaDeCuenta;
 
 	Logger log= LoggerFactory.getLogger(AppVentasApplication.class);
 
@@ -52,11 +57,13 @@ public class AppVentasApplication implements CommandLineRunner {
 		serviceProducto.save(p1);
 		serviceProducto.save(p);
 		
+		LineaDeCuenta lc= new LineaDeCuentaConProducto(1, p);
+		//LineaDeCuenta l1= new LineaDeCuentaConProducto(1,p);
+		serviceLineaDeCuenta.save(lc);
 		
 	/*	Vendedor v= new Vendedor("Carlos","Ruiz","carlos@gmail.com","3816397808","Leales Tucuman","44588");
 		
 		c.agregarCuenta(cu);
-		LineaDeCuenta l1= new LineaDeCuentaConProducto(1,p);
 		l1.setVendedor(v);
 		LineaDeCuenta l2= new LineaDeCuentaConProducto(1,p1);
 		l2.setVendedor(v);

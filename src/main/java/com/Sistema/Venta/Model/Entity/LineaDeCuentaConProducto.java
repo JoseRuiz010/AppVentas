@@ -12,12 +12,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "lineaDeCuenta")
+@Entity(name = "lineaDeCuentaConProducto")
 public class LineaDeCuentaConProducto extends LineaDeCuenta {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	
     private int cantidad;
     @OneToOne
     private Producto producto;
@@ -27,10 +24,10 @@ public class LineaDeCuentaConProducto extends LineaDeCuenta {
         this.producto = producto;
     }
 
-    @Override
+   /* @Override
     public void CalcularSubTotal() {
         setSubtotal(this.cantidad*this.producto.getPrecio());
-    }
+    }*/
 
     @Override
     public String toString() {
@@ -39,4 +36,6 @@ public class LineaDeCuentaConProducto extends LineaDeCuenta {
                 ", producto=" + producto +
                 '}';
     }
+
+	 
 }

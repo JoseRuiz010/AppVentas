@@ -5,13 +5,31 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
 @Setter
 @Getter
-public abstract class LineaDeCuenta {
+@MappedSuperclass
+public class LineaDeCuenta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate fecha;
-    private Vendedor vendedor;
+   // private Vendedor vendedor;
     private Double Subtotal;
+    
+    
 
-    public abstract void CalcularSubTotal();
+    public  void CalcularSubTotal() {}
+
+
+
+	public LineaDeCuenta() {
+		super();
+		this.fecha = LocalDate.now();
+		Subtotal = 0.0;
+	};
 }

@@ -1,13 +1,15 @@
 package com.Sistema.Venta.Model.Entity;
 
+import javax.persistence.Entity;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@Entity(name = "lineaDeCuentaConSaldo")
 public class LineaDeCuentaConSaldo extends LineaDeCuenta {
-
-    private Long id;
+ 
     private Double monto;
     private String descripcion;
 
