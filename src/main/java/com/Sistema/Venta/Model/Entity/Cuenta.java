@@ -32,8 +32,8 @@ public class Cuenta {
     private LocalDate fechaFin;
     @Enumerated(EnumType.STRING)
     private EstadoCuenta estado;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Cliente cliente;
+    
+     
     
    
  

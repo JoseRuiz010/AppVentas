@@ -14,6 +14,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
  
@@ -31,8 +32,9 @@ public class Cliente  extends  Persona {
 	private String codigoCliente;
 	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	private Usuario usuario;
-	@OneToMany(mappedBy = "cliente")
-	private List<Cuenta>cuentas= new ArrayList<>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "cuenta_id")
+	private List<Cuenta>cuentas= new ArrayList<Cuenta>();
 	
 	
 	public Cliente(String nombre, String apellido, String email, String telefono, String direccion,

@@ -1,5 +1,6 @@
 package com.Sistema.Venta.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +69,9 @@ public class ServiceClienteImpl implements IServiceCliente {
 		if(c==null) {
 			new Throwable("No se encontro el cliente", new NotFoundException());
 		}
+		 
+			c.setCuentas(new ArrayList<Cuenta>());
+	
 		c.getCuentas().add(cuenta);
 		repoCliente.save(c);
 		
