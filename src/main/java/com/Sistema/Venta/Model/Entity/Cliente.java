@@ -34,7 +34,7 @@ public class Cliente  extends  Persona {
 	private Usuario usuario;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "cuenta_id")
-	private List<Cuenta>cuentas= new ArrayList<Cuenta>();
+	private List<Cuenta>cuentas=  new ArrayList<>();
 	
 	
 	public Cliente(String nombre, String apellido, String email, String telefono, String direccion,
@@ -49,18 +49,18 @@ public class Cliente  extends  Persona {
 		super(nombre, apellido, email, telefono, direccion);
 		this.codigoCliente = codigoCliente;
 		this.usuario = usuario;
+		setCuentas(new ArrayList<Cuenta>());
 		 
 	}
 
 	public Cliente() {
-		 
+		setCuentas(new ArrayList<Cuenta>());
 	}
     
 
     /*public void agregarCuenta(Cuenta c){
         cuentas.add(c);
-    }*/
- 
+    } */
 
   
 }

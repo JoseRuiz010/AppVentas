@@ -70,7 +70,10 @@ public class ServiceClienteImpl implements IServiceCliente {
 			new Throwable("No se encontro el cliente", new NotFoundException());
 		}
 		 
-			c.setCuentas(new ArrayList<Cuenta>());
+		if(c.getCuentas()== null) {
+			
+		c.setCuentas(new ArrayList<Cuenta>());
+		}
 	
 		c.getCuentas().add(cuenta);
 		repoCliente.save(c);

@@ -37,7 +37,7 @@ public class AppVentasApplication implements CommandLineRunner {
 	    var cc=	c.getCuentas();
 		
 		serviceCliente.agregarCuenta(cu,1L);
-		
+		serviceCliente.agregarCuenta(cu,1L);
 		
 		log.info("Mostrar cliente 1 "+serviceCliente.getById(1L).getApellido());
 		
