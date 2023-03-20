@@ -19,8 +19,6 @@ import com.Sistema.Venta.Model.Entity.Producto;
 import com.Sistema.Venta.Model.Entity.Usuario;
 import com.Sistema.Venta.Model.Entity.Enum.TipoLineaProducto;
 import com.Sistema.Venta.Services.ServiceClienteImpl;
-import com.Sistema.Venta.Services.ServiceLineaDeCuentaConProductoImpl;
-import com.Sistema.Venta.Services.ServiceLineaDeCuentaConSaldo;
 import com.Sistema.Venta.Services.ServiceLineaDeCuentaImpl;
 import com.Sistema.Venta.Services.ServiceProductoImpl;
 
@@ -32,11 +30,11 @@ public class AppVentasApplication implements CommandLineRunner {
 	ServiceProductoImpl serviceProducto;
 	@Autowired
 	ServiceLineaDeCuentaImpl serviceLineaDeCuenta;
-	@Autowired
+	
+	/*@Autowired
 	ServiceLineaDeCuentaConProductoImpl serviceLineaConProducto;
-
 	@Autowired 
-	ServiceLineaDeCuentaConSaldo serviceLineaConSaldo;
+	ServiceLineaDeCuentaConSaldo serviceLineaConSaldo;*/
 	
 	Logger log= LoggerFactory.getLogger(AppVentasApplication.class);
 
@@ -74,8 +72,10 @@ public class AppVentasApplication implements CommandLineRunner {
 		LineaDeCuenta lcm= new LineaDeCuentaConSaldo(4500D);
 		serviceLineaDeCuenta.save(lcm);
 		
-		List<LineaDeCuentaConProducto>lineas= serviceLineaConProducto.getAll();
-		List<LineaDeCuentaConSaldo>lineaConsaldo= serviceLineaConSaldo.getAll();
+		List<LineaDeCuenta>lineas= serviceLineaDeCuenta.getAll();
+		
+		
+		//List<LineaDeCuentaConSaldo>lineaConsaldo= serviceLineaConSaldo.getAll();
 		
 	/*	Vendedor v= new Vendedor("Carlos","Ruiz","carlos@gmail.com","3816397808","Leales Tucuman","44588");
 		

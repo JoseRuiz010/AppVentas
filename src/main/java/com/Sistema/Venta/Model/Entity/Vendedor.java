@@ -1,13 +1,15 @@
 package com.Sistema.Venta.Model.Entity;
 
-import com.Sistema.Venta.Model.Entity.Persona;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Vendedor extends Persona {
 
     private Long id;
     private String legajo;
-
-    private Usuario usuario;
+   // private Usuario usuario;
 
     public Vendedor(String nombre, String apellido, String email, String telefono, String direccion, String legajo) {
         super(nombre, apellido, email, telefono, direccion);

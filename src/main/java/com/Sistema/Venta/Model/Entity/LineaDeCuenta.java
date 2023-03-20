@@ -5,14 +5,18 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+ 
 
 @Setter
 @Getter
-@MappedSuperclass
+@Entity(name = "lineaDeCuenta")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class LineaDeCuenta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
