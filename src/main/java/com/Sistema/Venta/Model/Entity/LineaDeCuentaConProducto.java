@@ -8,11 +8,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity(name = "lineaDeCuentaConProducto")
+@NoArgsConstructor
 public class LineaDeCuentaConProducto extends LineaDeCuenta {
 	
     private int cantidad;
