@@ -6,11 +6,13 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
  
 
 @Setter
@@ -22,7 +24,8 @@ public class LineaDeCuenta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate fecha;
-   // private Vendedor vendedor;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Vendedor vendedor;
     private Double Subtotal;
     
     

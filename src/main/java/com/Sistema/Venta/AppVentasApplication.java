@@ -15,9 +15,12 @@ import com.Sistema.Venta.Model.Entity.Cuenta;
 import com.Sistema.Venta.Model.Entity.LineaDeCuenta;
 import com.Sistema.Venta.Model.Entity.LineaDeCuentaConProducto;
 import com.Sistema.Venta.Model.Entity.LineaDeCuentaConSaldo;
+import com.Sistema.Venta.Model.Entity.Persona;
 import com.Sistema.Venta.Model.Entity.Producto;
 import com.Sistema.Venta.Model.Entity.Usuario;
+import com.Sistema.Venta.Model.Entity.Vendedor;
 import com.Sistema.Venta.Model.Entity.Enum.TipoLineaProducto;
+import com.Sistema.Venta.Services.IServiceVendedor;
 import com.Sistema.Venta.Services.ServiceClienteImpl;
 import com.Sistema.Venta.Services.ServiceLineaDeCuentaImpl;
 import com.Sistema.Venta.Services.ServiceProductoImpl;
@@ -30,6 +33,9 @@ public class AppVentasApplication implements CommandLineRunner {
 	ServiceProductoImpl serviceProducto;
 	@Autowired
 	ServiceLineaDeCuentaImpl serviceLineaDeCuenta;
+	
+	@Autowired
+	IServiceVendedor serviceVendedor;
 	
 	/*@Autowired
 	ServiceLineaDeCuentaConProductoImpl serviceLineaConProducto;
@@ -46,9 +52,13 @@ public class AppVentasApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		Usuario u = new Usuario("roque", "1234");
+		
 		Cliente c= new Cliente("Roque","Argañaraz","Roque@gmail.com","3814463721", "Leales, Barrio Pedro Parra MZ B Casa 17","CodRoque");
 		c.setUsuario(u);
 		serviceCliente.addCliente(c);
+
+		Persona v= new Vendedor("Carlos","Ruiz","carlos@gmail.com","3816397808","Leales Tucuman","44588");
+		serviceVendedor.save((Vendedor) v);
 		
 		Cuenta cu= new Cuenta();
 		c.getCuentas().add(cu);
@@ -66,18 +76,19 @@ public class AppVentasApplication implements CommandLineRunner {
 		serviceProducto.save(p);
 		
 		LineaDeCuenta lc= new LineaDeCuentaConProducto(1, p);
+		lc.setVendedor((Vendedor) v);
 		LineaDeCuenta l1= new LineaDeCuentaConProducto(1,p1);
 		serviceLineaDeCuenta.save(lc);
 		serviceLineaDeCuenta.save(l1);
 		LineaDeCuenta lcm= new LineaDeCuentaConSaldo(4500D);
+		lcm.setVendedor((Vendedor) v);
 		serviceLineaDeCuenta.save(lcm);
 		
 		List<LineaDeCuenta>lineas= serviceLineaDeCuenta.getAll();
 		
-		
 		//List<LineaDeCuentaConSaldo>lineaConsaldo= serviceLineaConSaldo.getAll();
 		
-	/*	Vendedor v= new Vendedor("Carlos","Ruiz","carlos@gmail.com","3816397808","Leales Tucuman","44588");
+	/*	
 		
 		c.agregarCuenta(cu);
 		l1.setVendedor(v);

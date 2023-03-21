@@ -1,7 +1,6 @@
 package com.Sistema.Venta.Model.Entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -24,8 +23,14 @@ import javax.persistence.OneToOne;
 @Setter
  
 @Entity
-public class Cliente  extends  Persona {
+public class Cliente  extends  Persona implements Serializable {
 	 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

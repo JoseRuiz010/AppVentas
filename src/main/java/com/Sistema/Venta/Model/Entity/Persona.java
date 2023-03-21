@@ -9,7 +9,8 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@Entity
+ 
+@MappedSuperclass
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
