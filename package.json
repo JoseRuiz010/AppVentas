@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "base-64": "^1.0.0",
     "daisyui": "^2.51.5",
     "final-form": "^4.20.9",
     "i": "^0.3.7",
