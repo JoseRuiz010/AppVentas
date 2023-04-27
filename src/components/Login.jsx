@@ -4,6 +4,7 @@ import { deleteError, setError, setToken } from "../context/authSlice/AuthSlice"
 import { Card } from "./commons/Card"
 import { Titulo } from "./commons/Titulo"
 import { InputGroup } from "./commons/InputGroup"
+import { login } from "../context/authSlice/ServiceAuth"
 
 export const Login = () => {
   const { token, error } = useSelector((state) => state.auth)
@@ -12,21 +13,15 @@ export const Login = () => {
   const submit = (values) => getData(values)
 
   const getData = async (values) => {
-    const data = await fetch(
-      'http://localhost:8090/auth/login/',
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
-      }).then(res => {
-        return res.json()
-      })
-      .then(res => {
-        dispatch(setToken(res.data.token))
-        dispatch(deleteError())
-      })
-      .catch((err) => dispatch(setError("Error al iniciar Session: " + err)))
-
+    const res = await login(values)
+    console.log({ res });
+    if (res.error) {
+      dispatch(setError(res.error))
+    }
+    if (res.data) {
+      dispatch(setToken(res.data.token))
+      dispatch(deleteError())
+    }
   }
 
   return (
