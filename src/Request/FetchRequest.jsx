@@ -35,6 +35,11 @@ const axiosRequest = ({ url, authToken, method, data = '', headersOverride = {} 
 
     ).then(({ data }) => {
         console.log({ success: true, data, error: null })
+
+        if (!data.data && data.error) {
+            console.log({ success: true, data: null, error: data.error });
+            return { success: true, data: null, error: data.error }
+        }
         return { success: true, data: data.data, error: null }
     }).catch(err => {
         console.log('REQUEST_ERROR', err);

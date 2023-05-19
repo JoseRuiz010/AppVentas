@@ -1,17 +1,26 @@
 import { RequestAxios } from "../../Request/FetchRequest"
+import { deleteError, deletteToken, setError, setToken } from "./AuthSlice"
 
 
-export const login = async (values) => {
+export const login = async (values, dispatch) => {
 
-    return await RequestAxios({
+    const res = await RequestAxios({
         url: '/auth/login/',
         method: 'POST',
         headersOverride: { 'Content-Type': 'application/json' },
         data: values
     })
-
+    if (res.error) {
+        dispatch(setError(JSON.stringify(res.error, null, 4)))
+    }
+    if (res.data) {
+        localStorage.setItem('token_user', res.data.token)
+        dispatch(setToken(res.data.token))
+        dispatch(deleteError())
+    }
 }
-const logout = () => {
-
+export const logout = (dispatch) => {
+    localStorage.removeItem('token_user')
+    dispatch(deletteToken())
 }
 

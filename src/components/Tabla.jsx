@@ -6,13 +6,13 @@ export const Tabla = () => {
 
     const columns = [
         {
-            name: 'Title',
+            name: 'Name',
             selector: row => row.title,
             sortable: true,
             button: true
         },
         {
-            name: 'Year',
+            name: 'Precio',
             selector: row => row.year,
             sortable: true,
         },
@@ -31,7 +31,7 @@ export const Tabla = () => {
         },
     ]
     return (
-        <div className='w-10/12'>
+        <div className='w-full'>
             <DataTable
                 columns={columns}
                 data={data}

@@ -13,15 +13,7 @@ export const Login = () => {
   const submit = (values) => getData(values)
 
   const getData = async (values) => {
-    const res = await login(values)
-    console.log({ res });
-    if (res.error) {
-      dispatch(setError(res.error))
-    }
-    if (res.data) {
-      dispatch(setToken(res.data.token))
-      dispatch(deleteError())
-    }
+    await login(values, dispatch)
   }
 
   return (
@@ -40,7 +32,7 @@ export const Login = () => {
             )
           }
         </Form>
-        <h1>{JSON.stringify(token, error)}</h1>
+        {/* <h1>{JSON.stringify({ token, error })}</h1> */}
         {error && <span className="text-red-400 font-bold text-center text-xl my-3">{error}</span>}
       </Card>
     </div>
