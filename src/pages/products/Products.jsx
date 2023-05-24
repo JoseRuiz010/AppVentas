@@ -13,7 +13,12 @@ export const Products = () => {
     const navigate = useNavigate()
     useEffect(() => {
         getProducs()
+        return () => {
+            actionProduct.ClearCurrent(dispatch)
+        }
     }, [])
+
+
     const getProducs = async () => {
         actionProduct.GetAll(dispatch)
     }

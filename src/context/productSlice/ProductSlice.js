@@ -46,15 +46,20 @@ export const productSlice = createSlice({
         saveRequest: (state) => {
             state.loading = true
         },
-        saveSuccess: (state, action) => {
-            state.item = action.payload,
+        saveSuccess: (state) => {
+            state.item = null,
                 state.loading = false
             state.error = null
         },
         saveFailure: (state, action) => {
             state.loading = false
             state.error = action.payload
-        }
+        },
+        clearCurrent: (state) => {
+            state.item = null,
+                state.loading = false
+            state.error = null
+        },
     },
 })
 
@@ -67,7 +72,7 @@ export const {
 } = productsSlice.actions
 
 export const { getRequest, getSuccess, getFailure,
-    saveRequest, saveSuccess, saveFailure
+    saveRequest, saveSuccess, saveFailure, clearCurrent
 } = productSlice.actions
 
 export default combineReducers({

@@ -43,9 +43,25 @@ const save = async (data, token) => {
 
     )
 }
+const update = async (data, token) => {
+    console.log('SERVICES::PRODUCTS::PUT');
+    return await RequestAxios({
+        url: '/producto/' + data.id,
+        method: 'PUT',
+        headersOverride: { 'Content-Type': 'application/json' },
+        data: JSON.stringify(data)
+    }).then(
+        res => {
+            console.log('RETURN FROM API', res);
+            return res
+        }
+
+    )
+}
 
 export const serviceProduct = {
     getAll,
     get,
-    save
+    save,
+    update
 }

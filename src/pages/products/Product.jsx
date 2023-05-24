@@ -80,7 +80,9 @@ export const Product = () => {
                             <p>{item?.lineaProducto}</p>
                         </div>
                         <div className='flex justify-around p-2'>
-                            <button className='btn gap-2 bg-yellow-500'>
+                            <button className='btn gap-2 bg-yellow-500'
+                                onClick={() => navigate(STRING_ROUTES.PRODUCT_EDIT.replace(':id', item.id))}
+                            >
                                 Editar
                                 <BiEdit size={20} />
                             </button>
