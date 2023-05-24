@@ -6,6 +6,8 @@ import { STRING_ROUTES } from '../../config/Routes';
 import { RoutesPrivate } from './RoutesPrivate';
 import { Clients } from '../pages/client/Clients'
 import { Products } from '../pages/products/Products'
+import { Product, loader } from '../pages/products/Product';
+import { SaveOrUpdateProduct } from '../pages/products/SaveOrUpdateProduct';
 
 export const Routes = () => {
 
@@ -22,6 +24,21 @@ export const Routes = () => {
         {
             path: STRING_ROUTES.PRODUCTS,
             element: <RoutesPrivate><Products /></RoutesPrivate>
+        },
+        {
+            path: STRING_ROUTES.PRODUCT,
+            element: <RoutesPrivate><Product /></RoutesPrivate>,
+            //  loader: loader
+        },
+        {
+            path: STRING_ROUTES.PRODUCT_NEW,
+            element: <RoutesPrivate><SaveOrUpdateProduct /></RoutesPrivate>,
+            //  loader: loader
+        },
+        {
+            path: STRING_ROUTES.PRODUCT_EDIT,
+            element: <RoutesPrivate><SaveOrUpdateProduct /></RoutesPrivate>,
+            //  loader: loader
         },
         {
             path: STRING_ROUTES.LOGIN,

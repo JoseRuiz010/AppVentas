@@ -11,6 +11,8 @@ export const STRING_ROUTES = {
 
     PRODUCTS: "/products/",
     PRODUCT: "/products/:id",
+    PRODUCT_NEW: "/products/new",
+    PRODUCT_EDIT: "/products/edit/:id",
 
 
 }

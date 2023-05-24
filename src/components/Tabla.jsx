@@ -1,44 +1,18 @@
 import React from 'react'
 import DataTable from 'react-data-table-component';
+import Loader from './Loader';
 
-export const Tabla = () => {
-    const ExpandedComponent = ({ data }) => <pre>{JSON.stringify(data, null, 2)}</pre>;
-
-    const columns = [
-        {
-            name: 'Name',
-            selector: row => row.title,
-            sortable: true,
-            button: true
-        },
-        {
-            name: 'Precio',
-            selector: row => row.year,
-            sortable: true,
-        },
-    ];
-
-    const data = [
-        {
-            id: 1,
-            title: 'Beetlejuice',
-            year: '1988',
-        },
-        {
-            id: 2,
-            title: 'Ghostbusters',
-            year: '1984',
-        },
-    ]
+export const Tabla = ({ columns, data, loading, pagination, ...rest }) => {
     return (
         <div className='w-full'>
             <DataTable
                 columns={columns}
-                data={data}
+                data={data || []}
                 selectableRows
                 pagination
-                expandableRows
-                expandableRowsComponent={ExpandedComponent}
+                progressPending={loading}
+                progressComponent={<Loader />}
+                {...rest}
             />
 
         </div>
