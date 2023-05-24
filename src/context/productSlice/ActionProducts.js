@@ -1,4 +1,4 @@
-import { getAllRequest, getAllSucess, getFailure, getRequest, getSuccess } from "./ProductSlice";
+import { getAllRequest, getAllSucess, getFailure, getRequest, getSuccess, saveFailure, saveRequest, saveSuccess } from "./ProductSlice";
 import { serviceProduct } from "./ServiceProduct"
 
 const GetAll = async (dispatch) => {
@@ -29,7 +29,28 @@ const get = async (dispatch, id) => {
   }
   return res;
 }
-const saveOrUpdate = () => { }
+const saveOrUpdate = async (dispatch, product) => {
+
+  console.log("SaveOrUpdate", product);
+  dispatch(saveRequest())
+
+  let res;
+  if (!product.id) {
+    console.log('====================================');
+    console.log('No tiene id');
+    console.log('====================================');
+    res = await serviceProduct.save(product, '')
+
+    console.log('Response save::', res);
+    if (res.data) {
+      dispatch(saveSuccess(res.data))
+    } else {
+      dispatch(saveFailure(res.error))
+    }
+  }
+
+
+}
 const del = () => { }
 
 export const actionProduct = {

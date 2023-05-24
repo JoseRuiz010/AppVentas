@@ -28,8 +28,24 @@ const get = async (id, token) => {
 
     )
 }
+const save = async (data, token) => {
+    console.log('SERVICES::PRODUCTS::POST');
+    return await RequestAxios({
+        url: '/producto/',
+        method: 'POST',
+        headersOverride: { 'Content-Type': 'application/json' },
+        data: JSON.stringify(data)
+    }).then(
+        res => {
+            console.log('RETURN FROM API', res);
+            return res
+        }
+
+    )
+}
 
 export const serviceProduct = {
     getAll,
-    get
+    get,
+    save
 }

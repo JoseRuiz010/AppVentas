@@ -43,13 +43,32 @@ export const productSlice = createSlice({
             state.error = action.payload,
                 state.loading = false
         },
+        saveRequest: (state) => {
+            state.loading = true
+        },
+        saveSuccess: (state, action) => {
+            state.item = action.payload,
+                state.loading = false
+            state.error = null
+        },
+        saveFailure: (state, action) => {
+            state.loading = false
+            state.error = action.payload
+        }
     },
 })
 
 
 // Action creators are generated for each case reducer function
-export const { getAllRequest, getAllSucess, getAllFailure } = productsSlice.actions
-export const { getRequest, getSuccess, getFailure } = productSlice.actions
+export const {
+    getAllRequest, getAllSucess, getAllFailure,
+
+
+} = productsSlice.actions
+
+export const { getRequest, getSuccess, getFailure,
+    saveRequest, saveSuccess, saveFailure
+} = productSlice.actions
 
 export default combineReducers({
     list: productsSlice.reducer,
