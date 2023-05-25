@@ -57,7 +57,7 @@ export const Product = () => {
                 </div>
                 <div className='divide-x-2 p-4 rounded-2xl flex gap-5 mx-auto  shadow-2xl'>
                     {item?.urlImagen &&
-                        <figure className='bg-blue-200 w-full'>
+                        <figure className='w-full'>
                             <img className='w-full' src={item?.urlImagen} />
                         </figure>
                     }
@@ -79,15 +79,15 @@ export const Product = () => {
                             <span className='font-bold'>Linea</span>
                             <p>{item?.lineaProducto}</p>
                         </div>
-                        <div className='flex justify-around p-2'>
-                            <button className='btn gap-2 bg-yellow-500'
+
+                        <div className='flex justify-around p-2 mt-3'>
+                            <button className='btn gap-2 bg-yellow-500 mt-3'
                                 onClick={() => navigate(STRING_ROUTES.PRODUCT_EDIT.replace(':id', item.id))}
                             >
                                 Editar
                                 <BiEdit size={20} />
                             </button>
                         </div>
-
                     </div>
                 </div>
             </div>

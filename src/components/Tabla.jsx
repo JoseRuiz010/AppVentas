@@ -8,7 +8,6 @@ export const Tabla = ({ columns, data, loading, pagination, ...rest }) => {
             <DataTable
                 columns={columns}
                 data={data || []}
-                selectableRows
                 pagination
                 progressPending={loading}
                 progressComponent={<Loader />}

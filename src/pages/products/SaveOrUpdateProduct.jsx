@@ -51,7 +51,8 @@ export const SaveOrUpdateProduct = () => {
                   <button className='btn w-full' type="submit">
                     <BiSave size={20} /> <p className='mx-3'>Guardar</p>
                   </button>
-                  <button className='btn w-full' type="submit">
+                  <button className='btn gap-2'
+                    onClick={() => navigate(STRING_ROUTES.PRODUCTS)}>
                     <BiArrowBack size={20} /> <p className='mx-3'>Cancelar</p>
                   </button>
                 </div>
