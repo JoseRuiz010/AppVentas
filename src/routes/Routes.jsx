@@ -8,6 +8,8 @@ import { Clients } from '../pages/client/Clients'
 import { Products } from '../pages/products/Products'
 import { Product, loader } from '../pages/products/Product';
 import { SaveOrUpdateProduct } from '../pages/products/SaveOrUpdateProduct';
+import { Client } from '../pages/client/Client';
+import { SaveOrUpdateClient } from '../pages/client/SaveOrUpdateClient';
 
 export const Routes = () => {
 
@@ -20,6 +22,18 @@ export const Routes = () => {
         {
             path: STRING_ROUTES.CLIENTS,
             element: <RoutesPrivate><Clients /></RoutesPrivate>
+        },
+        {
+            path: STRING_ROUTES.CLIENT,
+            element: <RoutesPrivate><Client /></RoutesPrivate>
+        },
+        {
+            path: STRING_ROUTES.CLIENT_NEW,
+            element: <RoutesPrivate><SaveOrUpdateClient /></RoutesPrivate>
+        },
+        {
+            path: STRING_ROUTES.CLIENT_EDIT,
+            element: <RoutesPrivate><SaveOrUpdateClient /></RoutesPrivate>
         },
         {
             path: STRING_ROUTES.PRODUCTS,
