@@ -1,4 +1,4 @@
-import { clearCurrent, getAllRequest, getAllSucess, getFailure, getRequest, getSuccess, saveFailure, saveRequest, saveSuccess } from "./ProductSlice";
+import { clearCurrent, getAllFailure, getAllRequest, getAllSucess, getFailure, getRequest, getSuccess, saveFailure, saveRequest, saveSuccess } from "./ProductSlice";
 import { serviceProduct } from "./ServiceProduct"
 
 const ClearCurrent = (dispatch) => {

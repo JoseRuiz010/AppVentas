@@ -1,4 +1,4 @@
-import { clearCurrent, getAllRequest, getAllSucess, getFailure, getRequest, getSuccess, saveFailure, saveRequest, saveSuccess } from "./clientSlice";
+import { clearCurrent, getAllFailure, getAllRequest, getAllSucess, getFailure, getRequest, getSuccess, saveFailure, saveRequest, saveSuccess } from "./clientSlice";
 import { serviceClient } from "./ServiceClient"
 
 const ClearCurrent = (dispatch) => {
@@ -9,8 +9,12 @@ const GetAll = async (dispatch) => {
 
   dispatch(getAllRequest())
   const res = await serviceClient.getAll()
-  console.log(res);
+    .catch(err => console.log("erro", { err }))
+  console.log(res.error);
+  console.log({ error: res.error });
+
   if (res.error) {
+     
     dispatch(getAllFailure(JSON.stringify(res.error, null, 4)))
   }
   if (res.data) {

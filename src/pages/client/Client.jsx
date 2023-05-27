@@ -8,6 +8,7 @@ import Loader from '../../components/Loader';
 import { BiArrowBack, BiEdit } from 'react-icons/bi';
 import { STRING_ROUTES } from '../../../config/Routes';
 import { actionClients } from '../../context/clientSlice/ActionClients';
+import { ErrorMsj } from '../../components/commons/Error';
 
 
 export async function loader({ params }) {
@@ -40,7 +41,11 @@ export const Client = () => {
     if (error) {
         return (
             <LayautWhitNavBar>
-                <h1>{JSON.stringify(error)}</h1>
+                <div className='w-11/12 mx-auto'>
+                    <ErrorMsj>
+                        {error}
+                    </ErrorMsj>
+                </div>
             </LayautWhitNavBar>
         )
     }
@@ -50,7 +55,7 @@ export const Client = () => {
         <LayautWhitNavBar>
             <div className='max-w-2xl mx-auto'>
 
-                <div className='mt-16 flex gap-3 mb-4 cursor-pointer' onClick={() => navigate(STRING_ROUTES.PRODUCTS)}>
+                <div className='mt-16 flex gap-3 mb-4 cursor-pointer' onClick={() => navigate(STRING_ROUTES.CLIENTS)}>
                     <p className='my-auto'>
                         <BiArrowBack size={30} />
                     </p>

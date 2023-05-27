@@ -36,7 +36,7 @@ export const clientSlice = createSlice({
             state.loading = true
         },
         getSuccess: (state, action) => {
-            state.item = action.payload,
+            state.item = action.payload.data,
                 state.loading = false
         },
         getFailure: (state, action) => {

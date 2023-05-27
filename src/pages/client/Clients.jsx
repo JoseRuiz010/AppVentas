@@ -6,6 +6,7 @@ import { actionClients } from '../../context/clientSlice/ActionClients'
 import { BsChevronRight } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom'
 import { STRING_ROUTES } from '../../../config/Routes'
+import { ErrorMsj } from '../../components/commons/Error'
 export const Clients = () => {
     const { items, error, loading } = useSelector((state) => state.clients.list)
     const dispatch = useDispatch()
@@ -54,6 +55,17 @@ export const Clients = () => {
             }
         },
     ];
+    if (error) {
+        return (
+            <LayautWhitNavBar>
+                <div className='w-11/12 mx-auto'>
+                    <ErrorMsj>
+                        {error}
+                    </ErrorMsj>
+                </div>
+            </LayautWhitNavBar>
+        )
+    }
 
     return (
         <>

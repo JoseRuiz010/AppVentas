@@ -7,6 +7,7 @@ import Loader from '../../components/Loader';
 
 import { BiArrowBack, BiEdit } from 'react-icons/bi';
 import { STRING_ROUTES } from '../../../config/Routes';
+import { ErrorMsj } from '../../components/commons/Error';
 
 
 export async function loader({ params }) {
@@ -39,7 +40,11 @@ export const Product = () => {
     if (error) {
         return (
             <LayautWhitNavBar>
-                <h1>{JSON.stringify(error)}</h1>
+                <div className='w-11/12 mx-auto'>
+                    <ErrorMsj>
+                        {error}
+                    </ErrorMsj>
+                </div>
             </LayautWhitNavBar>
         )
     }

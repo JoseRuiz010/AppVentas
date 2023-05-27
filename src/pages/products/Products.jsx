@@ -7,6 +7,7 @@ import Loader from '../../components/Loader'
 import { BsChevronRight } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom'
 import { STRING_ROUTES } from '../../../config/Routes'
+import { ErrorMsj } from '../../components/commons/Error'
 export const Products = () => {
     const { items, error, loading } = useSelector((state) => state.products.list)
     const dispatch = useDispatch()
@@ -59,6 +60,18 @@ export const Products = () => {
             }
         },
     ];
+
+    if (error) {
+        return (
+            <LayautWhitNavBar>
+                <div className='w-11/12 mx-auto'>
+                    <ErrorMsj>
+                        {error}
+                    </ErrorMsj>
+                </div>
+            </LayautWhitNavBar>
+        )
+    }
 
     return (
         <>
