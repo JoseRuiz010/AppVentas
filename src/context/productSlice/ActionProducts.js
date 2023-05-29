@@ -15,7 +15,6 @@ const GetAll = async (dispatch) => {
   }
   if (res.data) {
     dispatch(getAllSucess(res.data))
-    // dispatch(deleteError())
   }
   return res.data;
 }
@@ -29,20 +28,16 @@ const get = async (dispatch, id) => {
   }
   if (res.data) {
     dispatch(getSuccess(res.data))
-    // dispatch(deleteError())
   }
   return res;
 }
+
 const saveOrUpdate = async (dispatch, product) => {
 
   console.log("SaveOrUpdate", product);
   dispatch(saveRequest())
-
   let res;
   if (!product.id) {
-    console.log('====================================');
-    console.log('No tiene id');
-    console.log('====================================');
     res = await serviceProduct.save(product, '')
     console.log('Response save::', res);
   } else {
@@ -53,9 +48,8 @@ const saveOrUpdate = async (dispatch, product) => {
   } else {
     dispatch(saveFailure(res.error))
   }
-
-
 }
+
 const del = () => { }
 
 export const actionProduct = {
