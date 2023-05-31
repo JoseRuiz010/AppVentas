@@ -4,7 +4,7 @@ import Loader from './Loader';
 
 export const Tabla = ({ columns, data, loading, pagination, ...rest }) => {
   return (
-    <div className='w-full z-0'>
+    <div className='w-full  '>
       <DataTable
         columns={columns}
         data={data || []}

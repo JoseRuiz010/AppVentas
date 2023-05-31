@@ -6,6 +6,12 @@ export const STRING_ROUTES = {
     CLIENT: "/clients/:id",
     CLIENT_NEW: "/clients/new",
     CLIENT_EDIT: "/clients/edit/:id",
+    CLIENTS: "/clients/",
+
+    CUENTAS: "/cuentas/",
+    CUENTA: "/cuentas/:id",
+    CUENTA_NEW: "/cuentas/new",
+    CUENTA_EDIT: "/cuentas/edit/:id",
 
 
     HOME: "/",

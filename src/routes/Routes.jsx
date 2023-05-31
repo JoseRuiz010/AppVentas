@@ -10,6 +10,7 @@ import { Product, loader } from '../pages/products/Product';
 import { SaveOrUpdateProduct } from '../pages/products/SaveOrUpdateProduct';
 import { Client } from '../pages/client/Client';
 import { SaveOrUpdateClient } from '../pages/client/SaveOrUpdateClient';
+import { Cuentas } from '../pages/cuentas/Cuentas';
 
 export const Routes = () => {
 
@@ -52,6 +53,11 @@ export const Routes = () => {
         {
             path: STRING_ROUTES.PRODUCT_EDIT,
             element: <RoutesPrivate><SaveOrUpdateProduct /></RoutesPrivate>,
+            //  loader: loader
+        },
+        {
+            path: STRING_ROUTES.CUENTAS,
+            element: <RoutesPrivate><Cuentas /></RoutesPrivate>,
             //  loader: loader
         },
         {

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { LayautWhitNavBar } from '../../components/layaut/LayautWhitNavBar'
-import { actionProduct } from '../../context/productSlice/ActionProducts';
 import { useDispatch, useSelector } from 'react-redux';
 import { useMatches, useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader';
@@ -9,7 +8,9 @@ import { BiArrowBack, BiEdit } from 'react-icons/bi';
 import { STRING_ROUTES } from '../../../config/Routes';
 import { actionClients } from '../../context/clientSlice/ActionClients';
 import { ErrorMsj } from '../../components/commons/Error';
-
+import { Card } from '../../components/commons/Card';
+import { Tabla } from '../../components/Tabla';
+import { BsChevronRight } from 'react-icons/bs'
 
 export async function loader({ params }) {
   // const product = await actionProduct.get(dispatch, params.id);
@@ -49,58 +50,117 @@ export const Client = () => {
       </LayautWhitNavBar>
     )
   }
+  const columns = [
+    {
+      name: 'Descripcion',
+      selector: row => row.descripcion,
+      sortable: true,
+
+    },
+    {
+      name: 'Fecha Inicio',
+      selector: row => row.estado,
+      sortable: true,
+    },
+    {
+      name: 'Total',
+      selector: row => '$ ' + row.total,
+      sortable: true,
+    },
+    {
+      name: 'Action',
+      sortable: true,
+      cell: row => {
+
+        return (
+          <div className='cursor-pointer  p-3 rounded-full hover:bg-gray-100 '
+            onClick={() => navigate(STRING_ROUTES.CLIENT.replace(':id', row.id))}
+          >
+            <span className='font-bold'><BsChevronRight /></span>
+          </div>
+        )
+      }
+    },
+  ];
 
 
   return (
     <LayautWhitNavBar>
-      <div className='max-w-2xl mx-auto'>
-
-        <div className='mt-16 flex gap-3 mb-4 cursor-pointer' onClick={() => navigate(STRING_ROUTES.CLIENTS)}>
+      <div className='mx-auto  '>
+        <div className='flex gap-3 mb-4 cursor-pointer' onClick={() => navigate(STRING_ROUTES.CLIENTS)}>
           <p className='my-auto'>
             <BiArrowBack size={30} />
           </p>
           <h1 className='font-bold text-3xl'>{item?.nombre + ' ' + item?.apellido}</h1>
         </div>
-        <div className='divide-x-2 p-4 rounded-2xl flex gap-5 mx-auto  shadow-2xl'>
-          {item?.urlImagen &&
-            <figure className='w-full'>
-              <img className='w-full' src={item?.urlImagen} />
-            </figure>
-          }
 
-          <div className='divide-y-2 bg-white w-full p-4 flex flex-col justify-around'>
-            <div className='flex justify-between  mx-4 mb-3'>
-              <span className='font-bold'>Nombre</span>
-              <p>{item?.nombre}</p>
-            </div>
-            <div className='flex justify-between mx-4 mb-3'>
-              <span className='font-bold'>Apellido</span>
-              <p>{item?.apellido}</p>
-            </div>
-            <div className='flex justify-between mx-4'>
-              <span className='font-bold'>Email</span>
-              <p>{item?.email}</p>
-            </div>
-            <div className='flex justify-between mx-4'>
-              <span className='font-bold'>Telefono</span>
-              <p>{item?.telefono}</p>
-            </div>
-            <div className='flex justify-between mx-4'>
-              <span className='font-bold'>Direccion</span>
-              <p>{item?.direccion}</p>
-            </div>
+        {item?.urlImagen &&
+          <figure className='w-full'>
+            <img className='w-full' src={item?.urlImagen} />
+          </figure>
+        }
 
-            <div className='flex justify-around p-2 mt-3'>
-              <button className='btn gap-2 bg-yellow-500 mt-3'
-                onClick={() => navigate(STRING_ROUTES.CLIENT_EDIT.replace(':id', item.id))}
-              >
-                Editar
-                <BiEdit size={20} />
-              </button>
+        <div className='flex flex-col md:flex-row'>
+          <div className='p-2 basis-1/4'>
+            <CardWithDivide>
+              {!item?.urlImagen &&
+                <figure className='z-0 w-28 mx-auto mb-10 rounded-full border-[2px] border-gray-500 p-1'>
+                  <img className='w-full' src={'https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg'} />
+                </figure>
+              }
+
+              <ItemsCard label={'Nombre'} info={item?.nombre} />
+              <ItemsCard label={'Apellido'} info={item?.apellido} />
+              <ItemsCard label={'Email'} info={item?.email} />
+              <ItemsCard label={'Telefono'} info={item?.telefono} />
+              <ItemsCard label={'Direccion'} info={item?.direccion} />
+
+              <div className='flex justify-around p-2 mt-3'>
+                <button className='btn gap-2 bg-yellow-500 mt-3'
+                  onClick={() => navigate(STRING_ROUTES.CLIENT_EDIT.replace(':id', item.id))}
+                >
+                  Editar
+                  <BiEdit size={20} />
+                </button>
+              </div>
+            </CardWithDivide>
+          </div>
+          <div className='p-2 basis-3/4'>
+            <h1 className='font-bold text-2xl mb-5'>Cuentas</h1>
+            <div className='card bg-base-100 shadow-xl mx-auto p-1 flex' >
+              {item?.cuentas && <Tabla
+                columns={columns}
+                data={item?.cuentas}
+              />
+              }
             </div>
           </div>
         </div>
+
       </div>
-    </LayautWhitNavBar>
+    </LayautWhitNavBar >
+  )
+}
+
+export const CardWithDivide = ({ children }) => {
+
+  return (
+    <Card>
+      <div className='divide-y-2   bg-white w-full  flex flex-col justify-around'>
+        {
+          children
+        }
+      </div>
+    </Card>
+  )
+}
+
+export const ItemsCard = ({ label, info }) => {
+
+  return (
+    <div className='flex justify-between mx-4 mb-3 z-0'>
+      <span className='font-bold'>{label}</span>
+      <p>{info}</p>
+    </div>
   )
 }

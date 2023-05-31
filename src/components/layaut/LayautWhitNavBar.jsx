@@ -4,10 +4,10 @@ import { Navbar } from './Navbar'
 export const LayautWhitNavBar = ({ children }) => {
   return (
     <div>
-      <header>
+      <header className='sticky top-0 z-50 '>
         <Navbar />
       </header>
-      <main className='w-11/12 mx-auto  mt-3'>
+      <main className='w-full  mx-auto sm:w-11/12  p-1'>
         {
           children
         }

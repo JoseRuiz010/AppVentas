@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const Card = ({ children }) => {
+export const Card = ({ children, width }) => {
   return (
-    <div className='card w-96 mt-9 bg-base-100 shadow-xl mx-auto p-5 flex'>
+    <div className='card w-full bg-base-100 shadow-2xl   mx-auto p-3 flex'>
       {children}
     </div>
   )

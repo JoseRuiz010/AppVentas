@@ -14,8 +14,8 @@ export const login = async (values, dispatch) => {
         dispatch(setError(JSON.stringify(res.error, null, 4)))
     }
     if (res.data) {
-        localStorage.setItem('token_user', res.data.token)
-        dispatch(setToken(res.data.token))
+        localStorage.setItem('token_user', res.data.data.token)
+        dispatch(setToken(res.data.data.token))
         dispatch(deleteError())
     }
 }
