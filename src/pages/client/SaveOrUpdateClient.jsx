@@ -53,7 +53,14 @@ export const SaveOrUpdateClient = () => {
                     <BiSave size={20} /> <p className='mx-3'>Guardar</p>
                   </button>
                   <button className='btn gap-2'
-                    onClick={() => navigate(STRING_ROUTES.CLIENTS)}>
+                    onClick={() => {
+                      if (id) {
+                        navigate(STRING_ROUTES.CLIENT.replace(':id', id))
+                      } else {
+                        navigate(STRING_ROUTES.CLIENTS)
+                      }
+
+                    }}>
                     <BiArrowBack size={20} /> <p className='mx-3'>Cancelar</p>
                   </button>
                 </div>

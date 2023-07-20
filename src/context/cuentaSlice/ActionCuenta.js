@@ -1,5 +1,5 @@
-import { clearCurrent, getAllFailure, getAllRequest, getAllSucess, getFailure, getRequest, getSuccess, saveFailure, saveRequest, saveSuccess } from "./ProductSlice";
-import { serviceProduct } from "./ServiceProduct"
+import { clearCurrent, getAllFailure, getAllRequest, getAllSucess, getFailure, getRequest, getSuccess, saveFailure, saveRequest, saveSuccess } from "./CuentaSlice";
+import { serviceCuenta } from "./ServiceCuenta"
 
 const ClearCurrent = (dispatch) => {
   dispatch(clearCurrent())
@@ -8,7 +8,7 @@ const ClearCurrent = (dispatch) => {
 const GetAll = async (dispatch) => {
 
   dispatch(getAllRequest())
-  const res = await serviceProduct.getAll()
+  const res = await serviceCuenta.getAll()
   console.log(res);
   if (res.error) {
     dispatch(getAllFailure(JSON.stringify(res.error, null, 4)))
@@ -16,18 +16,30 @@ const GetAll = async (dispatch) => {
   if (res.data) {
     dispatch(getAllSucess(res.data))
   }
-  return res.data.data;
+  return res.data;
 }
 
 const get = async (dispatch, id) => {
   dispatch(getRequest())
-  const res = await serviceProduct.get(id, 'dd')
+  const res = await serviceCuenta.get(id, 'dd')
   console.log(res);
   if (res.error) {
     dispatch(getFailure(JSON.stringify(res.error, null, 4)))
   }
   if (res.data) {
     dispatch(getSuccess(res.data))
+  }
+  return res.data;
+}
+const getByClient = async (dispatch, id) => {
+  dispatch(getRequest())
+  const res = await serviceCuenta.getClient(id, 'dd')
+  console.log(res);
+  if (res.error) {
+    dispatch(getAllFailure(JSON.stringify(res.error, null, 4)))
+  }
+  if (res.data) {
+    dispatch(getAllSucess(res.data))
   }
   return res;
 }
@@ -38,10 +50,10 @@ const saveOrUpdate = async (dispatch, product) => {
   dispatch(saveRequest())
   let res;
   if (!product.id) {
-    res = await serviceProduct.save(product, '')
+    res = await serviceCuenta.save(product, '')
     console.log('Response save::', res);
   } else {
-    res = await serviceProduct.update(product, '')
+    res = await serviceCuenta.update(product, '')
   }
   if (res.data) {
     dispatch(saveSuccess())
@@ -52,10 +64,11 @@ const saveOrUpdate = async (dispatch, product) => {
 
 const del = () => { }
 
-export const actionProduct = {
+export const actionCuenta = {
   get,
   GetAll,
   saveOrUpdate,
   del,
-  ClearCurrent
+  ClearCurrent,
+  getByClient
 }

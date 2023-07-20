@@ -1,11 +1,12 @@
 import { RequestAxios } from "../../Request/FetchRequest"
+import { API } from "../../config/ApiURL"
 import { deleteError, deletteToken, setError, setToken } from "./AuthSlice"
 
 
 export const login = async (values, dispatch) => {
 
     const res = await RequestAxios({
-        url: '/auth/login/',
+        url: API.AUTH.LOGIN,
         method: 'POST',
         headersOverride: { 'Content-Type': 'application/json' },
         data: values

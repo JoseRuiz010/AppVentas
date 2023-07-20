@@ -37,29 +37,38 @@ export const SaveOrUpdateProduct = () => {
 
   return (
     <LayautWhitNavBar>
-      <Card>
-        <Titulo text={title}></Titulo>
-        <Form onSubmit={onSubmit} initialValues={item}>
-          {
-            props => (
-              <form onSubmit={props.handleSubmit}>
-                <CustomField name={"descripcion"} textLabel={"Descripcion"} validate={formValidation.required} />
-                <CustomField name={"capacidad"} textLabel={"Capacidad"} validate={formValidation.required} />
-                <CustomField name={"urlImagen"} textLabel={"Imagen URL"} validate={formValidation.required} />
-                <CustomField name={"precio"} textLabel={"Precio"} validate={formValidation.required} type='number' />
-                <div className='grid grid-cols-2 gap-2'>
-                  <button className='btn w-full' type="submit">
-                    <BiSave size={20} /> <p className='mx-3'>Guardar</p>
-                  </button>
-                  <button className='btn gap-2'
-                    onClick={() => navigate(STRING_ROUTES.PRODUCTS)}>
-                    <BiArrowBack size={20} /> <p className='mx-3'>Cancelar</p>
-                  </button>
-                </div>
-              </form>
-            )}
-        </Form>
-      </Card>
+      <div className='w-96 mx-auto'>
+
+        <Card>
+          <Titulo text={title}></Titulo>
+          <Form onSubmit={onSubmit} initialValues={item}>
+            {
+              props => (
+                <form onSubmit={props.handleSubmit}>
+                  <CustomField name={"descripcion"} textLabel={"Descripcion"} validate={formValidation.required} />
+                  <CustomField name={"capacidad"} textLabel={"Capacidad"} validate={formValidation.required} />
+                  <CustomField name={"urlImagen"} textLabel={"Imagen URL"} validate={formValidation.required} />
+                  <CustomField name={"precio"} textLabel={"Precio"} validate={formValidation.required} type='number' />
+                  <div className='grid grid-cols-2 gap-2'>
+                    <button className='btn w-full' type="submit">
+                      <BiSave size={20} /> <p className='mx-3'>Guardar</p>
+                    </button>
+                    <button className='btn gap-2'
+                      onClick={() => {
+                        if (id) {
+                          navigate(STRING_ROUTES.PRODUCT.replace(':id', id))
+                        } else {
+                          navigate(STRING_ROUTES.PRODUCTS)
+                        }
+                      }}>
+                      <BiArrowBack size={20} /> <p className='mx-3'>Cancelar</p>
+                    </button>
+                  </div>
+                </form>
+              )}
+          </Form>
+        </Card>
+      </div>
     </LayautWhitNavBar>
   )
 }

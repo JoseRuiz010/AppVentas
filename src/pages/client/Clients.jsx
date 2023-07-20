@@ -25,13 +25,13 @@ export const Clients = () => {
     const columns = [
         {
             name: 'Nombre',
-            selector: row => row.nombre,
+            selector: row => row.name,
             sortable: true,
 
         },
         {
             name: 'Apellido',
-            selector: row => row.apellido,
+            selector: row => row.lastName,
             sortable: true,
         },
         {

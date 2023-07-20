@@ -42,7 +42,7 @@ export const Products = () => {
         },
         {
             name: 'Linea',
-            selector: row => row.lineaProducto,
+            selector: row => row.marca.nombre,
             sortable: true,
         },
         {
@@ -60,6 +60,13 @@ export const Products = () => {
             }
         },
     ];
+    if (loading) {
+        <LayautWhitNavBar>
+            <div>
+                <h1>Loading .....</h1>
+            </div>
+        </LayautWhitNavBar>
+    }
 
     if (error) {
         return (
@@ -85,7 +92,7 @@ export const Products = () => {
                     </div>
 
                     <div className='mt-4'>
-                        {<Tabla
+                        {items && <Tabla
                             data={items}
                             loading={loading}
                             pagination={true}

@@ -1,7 +1,8 @@
 import axios from "axios"
+import { URL_SERVER } from "../config/ApiURL"
 
 const AXIOS = axios.create({
-    baseURL: 'http://localhost:8090/'
+    baseURL: URL_SERVER
 })
 export const RequestAxios = ({ url, authToken, method, data, headersOverride }) => {
 
