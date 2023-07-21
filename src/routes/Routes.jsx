@@ -12,6 +12,9 @@ import { Client } from '../pages/client/Client';
 import { SaveOrUpdateClient } from '../pages/client/SaveOrUpdateClient';
 import { Cuentas } from '../pages/cuentas/Cuentas';
 import { Cuenta } from '../pages/cuentas/Cuenta';
+import { Marcas } from '../pages/marcas/Marcas';
+import { Marca } from '../pages/marcas/Marca';
+import { SaveOrUpdateMarca } from '../pages/marcas/SaveOrUpdateMarca';
 
 export const Routes = () => {
 
@@ -36,6 +39,25 @@ export const Routes = () => {
         {
             path: STRING_ROUTES.CLIENT_EDIT,
             element: <RoutesPrivate><SaveOrUpdateClient /></RoutesPrivate>
+        },
+        {
+            path: STRING_ROUTES.MARCAS,
+            element: <RoutesPrivate><Marcas /></RoutesPrivate>
+        },
+        {
+            path: STRING_ROUTES.MARCA,
+            element: <RoutesPrivate><Marca /></RoutesPrivate>,
+            //  loader: loader
+        },
+        {
+            path: STRING_ROUTES.MARCA_NEW,
+            element: <RoutesPrivate><SaveOrUpdateMarca /></RoutesPrivate>,
+            //  loader: loader
+        },
+        {
+            path: STRING_ROUTES.MARCA_EDIT,
+            element: <RoutesPrivate><SaveOrUpdateMarca /></RoutesPrivate>,
+            //  loader: loader
         },
         {
             path: STRING_ROUTES.PRODUCTS,

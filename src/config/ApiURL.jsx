@@ -7,25 +7,32 @@ export const API = {
   PRODUCTS: {
     GET_ALL: "products/",
     GET: (id) => "products/" + id,
-    SAVE: (id) => "products/" + id,
+    SAVE: "products/",
     DEL: (id) => "products/" + id,
     UPDATE: (id) => "products/" + id,
   },
   CLIENTS: {
     GET_ALL: "client/",
     GET: (id) => "client/" + id,
-    SAVE: (id) => "client/" + id,
+    SAVE: "client/",
     DEL: (id) => "client/" + id,
     UPDATE: (id) => "client/" + id,
   },
   CUENTAS: {
     GET_ALL: "cuenta/",
     GET: (id) => "cuenta/" + id,
-    SAVE: (id) => "cuenta/" + id,
+    SAVE: "cuenta/",
     DEL: (id) => "cuenta/" + id,
     UPDATE: (id) => "cuenta/" + id,
     GET_By_CLIENT: (id) => "/cuenta/client/" + id
-  }
+  },
+  MARCAS: {
+    GET_ALL: "brands/",
+    GET: (id) => "brands/" + id,
+    SAVE: "brands/",
+    DEL: (id) => "brands/" + id,
+    UPDATE: (id) => "brands/" + id,
+  },
 
 }
 

@@ -32,6 +32,7 @@ export const Navbar = () => {
             <NavItems to={STRING_ROUTES.CLIENTS} label={"Clientes"} onClick={handleOpen} />
             <NavItems to={STRING_ROUTES.PRODUCTS} label={"Productos"} onClick={handleOpen} />
             <NavItems to={STRING_ROUTES.PRODUCTS} label={"Vendedores"} onClick={handleOpen} />
+            <NavItems to={STRING_ROUTES.MARCAS} label={"Marcas"} onClick={handleOpen} />
             <NavItems to={STRING_ROUTES.PRODUCTS} label={"Logout"} labelColor={'text-red-400'}
               onClick={() => {
                 logout(dispatch)
