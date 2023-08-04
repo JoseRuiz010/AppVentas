@@ -8,6 +8,8 @@ import { BsChevronRight } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom'
 import { STRING_ROUTES } from '../../../config/Routes'
 import { ErrorMsj } from '../../components/commons/Error'
+import { Header } from '../../components/layaut/Header'
+import { Button } from '../../components/commons/Button'
 export const Products = () => {
     const { items, error, loading } = useSelector((state) => state.products.list)
     const dispatch = useDispatch()
@@ -84,13 +86,16 @@ export const Products = () => {
         <>
             <LayautWhitNavBar>
                 <div className='w-11/12 mx-auto'>
-                    <div className='flex justify-between '>
-                        <h3 className='font-bold text-2xl '>Products</h3>
-                        <button className='btn'
-                            onClick={() => navigate(STRING_ROUTES.PRODUCT_NEW)}
-                        >Crear Producto</button>
-                    </div>
-
+                    <Header
+                        title={"Productos"}
+                        className={'flex justify-between'}
+                        component={
+                            <Button
+                                action={() => navigate(STRING_ROUTES.PRODUCT_NEW)}
+                                textButton={'Crear Producto'}
+                            />
+                        }
+                    />
                     <div className='mt-4'>
                         {items && <Tabla
                             data={items}

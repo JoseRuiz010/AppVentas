@@ -7,6 +7,8 @@ import { BsChevronRight } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom'
 import { STRING_ROUTES } from '../../../config/Routes'
 import { ErrorMsj } from '../../components/commons/Error'
+import { Header } from '../../components/layaut/Header'
+import { Button } from '../../components/commons/Button'
 
 
 
@@ -81,20 +83,22 @@ export const Cuentas = () => {
     <>
       <LayautWhitNavBar>
         <div className='w-11/12 mx-auto'>
-          <div className='flex justify-between '>
-            <h3 className='font-bold text-2xl '>Cuentas</h3>
-            <button className='btn'
-              onClick={() => navigate(STRING_ROUTES.CUENTA_NEW)}
-            >Crear Cuenta</button>
-          </div>
-
+          <Header
+            title={"Cuentas"}
+            className={'flex justify-between'}
+            component={
+              <Button
+                action={() => navigate(STRING_ROUTES.CUENTA_NEW)}
+                textButton={'Crear Cuenta'}
+              />
+            }
+          />
           <div className='mt-4'>
             {<Tabla
               data={items}
               loading={loading}
               pagination={true}
               columns={columns}
-
             />}
           </div>
         </div>

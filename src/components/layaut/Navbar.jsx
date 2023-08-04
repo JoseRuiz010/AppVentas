@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { STRING_ROUTES } from '../../../config/Routes'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { BiMenuAltLeft } from 'react-icons/bi'
 import { GrClose } from 'react-icons/gr'
 import { FaRegUserCircle } from 'react-icons/fa'
@@ -11,7 +11,7 @@ export const Navbar = () => {
   const [isOpen, setisOpen] = useState(false)
   const dispatch = useDispatch();
   const handleOpen = () => setisOpen(prev => !prev)
-
+  const navigate = useNavigate()
   return (
     <div className={`sm:px-5 px-0 bg-white sm:h-20 z-10 shadow-md mb-10 `}>
       <div className='p-3 sm:mx-auto flex flex-col  w-full sm:justify-between sm:flex-row sm:border-none border-b-[1px]'>
@@ -19,7 +19,7 @@ export const Navbar = () => {
           <p className=' sm:hidden my-auto' onClick={handleOpen}>
             {!isOpen ? <BiMenuAltLeft size={25} /> : <GrClose size={25} />}
           </p>
-          <div className=''>
+          <div className='cursor-pointer' onClick={() => navigate(STRING_ROUTES.HOME)}>
             <img className='w-16 m-auto rounded-full my-auto' src={logo} />
           </div>
           <div className='my-auto sm:hidden text-right ' to={STRING_ROUTES.HOME} label={"LAB9"}>
