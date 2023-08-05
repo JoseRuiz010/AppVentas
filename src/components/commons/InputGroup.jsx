@@ -3,12 +3,12 @@ import { Field } from 'react-final-form'
 
 export const InputGroup = ({ label, placeholder = '', name, validation, type = 'text' }) => {
   return (
-    <div className='mx-auto'>
+    <div className='mb-5'>
       <Field name={name} validate={validation}>
         {({ input, meta }) => (
-          <div className='mx-auto w-max'>
-            <label className='text-lg'>{label}</label>
-            <input {...input} type={type} placeholder={placeholder} className="input input-bordered w-full max-w-xs" />
+          <div className='w-full'>
+            <label className='text-lg '>{label}</label>
+            <input {...input} type={type} placeholder={placeholder} className="input input-bordered w-full" />
             {meta.error && meta.touched && <span className='text-red-500 text-left'>*{meta.error}</span>}
           </div>
         )}

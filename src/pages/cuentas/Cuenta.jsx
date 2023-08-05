@@ -17,7 +17,6 @@ export async function loader({ params }) {
   // return { product: product };
 }
 
-
 export const Cuenta = () => {
   const dispatch = useDispatch()
   const params = useMatches()
